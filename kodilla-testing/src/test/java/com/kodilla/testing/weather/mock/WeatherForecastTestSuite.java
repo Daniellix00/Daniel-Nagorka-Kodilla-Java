@@ -34,7 +34,40 @@ void testCalculateForecastWithMock() {                                     // [9
 
     //Then
     Assertions.assertEquals(5, quantityOfSensors);                          // [13]
-}                                                                          // [14]
 }
+@Test
+void TestCalculateAverageWithMock() {
+  //Given
+    Map<String,Double>temperaturesMap = new HashMap<>();
+    temperaturesMap.put("Rzeszów",25.0);
+    temperaturesMap.put("Krakow", 26.0);                                       // [16]
+    temperaturesMap.put("Wroclaw", 24.0);
+   when(temperaturesMock.getTemperatures()).thenReturn(temperaturesMap);
+  WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
+   //when
+    double srednia = weatherForecast.calculateAverage();
+    //then
+    Assertions.assertEquals(25,srednia);
+
+    }
+@Test
+    void TestCalculateMedianWithMock(){
+        //Given
+    Map<String, Double>temperaturesMap = new HashMap<>();
+    temperaturesMap.put("Rzeszow", 25.0);                                      // [15]
+    temperaturesMap.put("Krakow", 26.0);                                       // [16]
+    temperaturesMap.put("Wroclaw", 24.0);                                      // [17]
+    temperaturesMap.put("Warszawa", 25.0);
+    when(temperaturesMock.getTemperatures()).thenReturn(temperaturesMap);
+    WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
+//when
+    double mediana = weatherForecast.calculateMedian();
+    // then
+    Assertions.assertEquals(25,mediana);
+    }
+
+}
+
+
 
 
