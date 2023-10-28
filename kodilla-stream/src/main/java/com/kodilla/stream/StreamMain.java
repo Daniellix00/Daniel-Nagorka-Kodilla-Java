@@ -8,7 +8,7 @@ import com.kodilla.stream.reference.FunctionalCalculator;
 public class StreamMain {
     public static void main(String[] args) {
         PoemBeautifier beautifier = new PoemBeautifier();
-   PoemDecorator abc =   text -> "ABC" + text + "ABC";
+   PoemDecorator abc = text -> "ABC" + text + "ABC";
    PoemDecorator xyz = text -> "<3" + text + "<3";
 beautifier.beautify("Hello world", abc);
 beautifier.beautify("Hello world", String::toUpperCase);
