@@ -1,17 +1,25 @@
 package com.kodilla.stream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import com.kodilla.stream.book.Book;
+import com.kodilla.stream.book.BookDirectory;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.beautifier.PoemDecorator;
-import com.kodilla.stream.lambda.*;
-import com.kodilla.stream.reference.FunctionalCalculator;
-
+import java.util.stream.Collectors;
 public class StreamMain {
     public static void main(String[] args) {
-        PoemBeautifier beautifier = new PoemBeautifier();
-   PoemDecorator abc = text -> "ABC" + text + "ABC";
-   PoemDecorator xyz = text -> "<3" + text + "<3";
-beautifier.beautify("Hello world", abc);
-beautifier.beautify("Hello world", String::toUpperCase);
-        beautifier.beautify("Hello world", xyz);
+        Forum theForum = new Forum();
+        Map<Integer, ForumUser> forumResult = theForum.getList().stream()
+                .filter(forumUser -> forumUser.getSex() == 'm')
+                .filter(forumUser ->forumUser.getBirthdate().getYear()<2004 )
+                .filter(forumUser -> forumUser.getPosts()>0)
+                .collect(Collectors.toMap(ForumUser::getiD,ForumUser ->ForumUser));
+        System.out.println("elementy: " + forumResult.size());
+        forumResult.entrySet().stream()
+                .map(entry -> entry.getKey() + ":" + entry.getValue())
+                .forEach(System.out::println);
     }
-}
+    }
+
