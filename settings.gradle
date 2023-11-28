@@ -4,4 +4,7 @@ include 'kodilla-stream'
 include 'kodilla-stream:kodilla-exception'
 findProject(':kodilla-stream:kodilla-exception')?.name = 'kodilla-exception'
 include 'kodilla-exception'
-
+include 'kodilla-good-patterns'
+include 'kodilla-spring-intro'
+include 'kodilla-spring-intro'
+include 'kodilla-spring'
