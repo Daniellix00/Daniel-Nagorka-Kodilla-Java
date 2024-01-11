@@ -1,5 +1,6 @@
-package com.kodilla.hibernate.task.dao;
-import com.kodilla.hibernate.task.Task;
+package com.kodilla.hibernate.manytomany.dao;
+
+import com.kodilla.hibernate.manytomany.Employee;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -7,10 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
-
 @Transactional
 @Repository
-public interface TaskDao extends CrudRepository<Task, Integer> {
-    List<Task> findByDuration(int duration);
-
+public interface EmployeeDao extends CrudRepository<Employee,Integer> {
+    List<Employee> findByLastName(String lastName);
 }
+

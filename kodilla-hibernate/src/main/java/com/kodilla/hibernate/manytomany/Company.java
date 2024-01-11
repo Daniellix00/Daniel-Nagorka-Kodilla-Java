@@ -5,13 +5,19 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Company.findByFirstThreeCharacters",
+                query = "SELECT * FROM companies WHERE LEFT(COMPANY_NAME, 3) = :firstThreeCharacters",
+                resultClass = Company.class
+        )
+})
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
     private int id;
     private String name;
-private List<Employee> employees = new ArrayList<>();
+private List<Employee>  employees = new ArrayList<>();
     public Company() {
     }
 
@@ -33,6 +39,7 @@ private List<Employee> employees = new ArrayList<>();
         return name;
     }
 
+
     private void setId(int id) {
         this.id = id;
     }
@@ -40,6 +47,8 @@ private List<Employee> employees = new ArrayList<>();
     private void setName(String name) {
         this.name = name;
     }
+
+
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "companies")
     public List<Employee> getEmployees() {
         return employees;
@@ -49,3 +58,4 @@ private List<Employee> employees = new ArrayList<>();
         this.employees = employees;
     }
 }
+
